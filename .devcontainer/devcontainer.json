@@ -1,0 +1,43 @@
+{
+  "name": "Python",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "os-provided",
+      "installTools": true,
+      "toolsToInstall": "flake8,autopep8,black,yapf,mypy,pydocstyle,pycodestyle,bandit,pipenv,virtualenv,pytest,pylint",
+      "optimize": false,
+      "enableShared": false,
+      "installPath": "/usr/local/python",
+      "installJupyterlab": false,
+      "configureJupyterlabAllowOrigin": "",
+      "httpProxy": ""
+    }
+  },
+  "containerEnv": {
+    "PYTHON_PATH": "/usr/local/python/current",
+    "PIPX_HOME": "/usr/local/py-utils",
+    "PIPX_BIN_DIR": "/usr/local/py-utils/bin",
+    "PATH": "/usr/local/python/current/bin:/usr/local/py-utils/bin:/usr/local/jupyter:${PATH}"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.autopep8"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/python/current/bin/python",
+        "[python]": {
+          "editor.defaultFormatter": "ms-python.autopep8"
+        }
+      }
+    }
+  },
+  "postCreateCommand": "pip install -r requirements.txt",
+  "installsAfter": [
+    "ghcr.io/devcontainers/features/common-utils",
+    "ghcr.io/devcontainers/features/oryx"
+  ]
+}
